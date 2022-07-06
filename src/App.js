@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import DummyDataList from './components/DummyDataList';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const App = () => {
 
   const [dummyData, setDummyData] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
-  const fetchDummyDataHandler = () => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(response => {
-      return response.json()
-    }).then(data => {
+
+  const fetchDummyDataHandler = async () => {
+    setIsLoading(true)
+      const respose = await fetch('https://jsonplaceholder.typicode.com/posts')
+      const data = await respose.json()
+      if(!respose.ok){
+        throw new Error('Something went wrong!')
+      }
       const dataPack = data.map(d => {
         return {
           id: d.id,
@@ -18,7 +23,7 @@ const App = () => {
         }
       })
       setDummyData(dataPack)
-    })
+    setIsLoading(false)
   }
 
   const clearDataHandler = () => {
@@ -29,7 +34,10 @@ const App = () => {
     <div className="container">
       <button onClick={fetchDummyDataHandler} type="button" className="btn btn-warning m-5">Fetch Dummy Data</button>
       <button onClick={clearDataHandler} type="button" className="btn btn-danger m-5">Clear Data</button>
-      <DummyDataList dataList={dummyData}/>
+      <div>
+        {!isLoading && <DummyDataList dataList={dummyData}/>}
+        {isLoading && <LoadingSpinner />}
+      </div>
     </div>
   );
 }
