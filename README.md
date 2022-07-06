@@ -29,7 +29,7 @@
 	 Fetch data using XHR
 	 ```
 	const http = new XMLHttpRequest();  
-	const API_URL = ‘[https://jsonplaceholder.typicode.com/posts](https://jsonplaceholder.typicode.com/posts)’  
+	const API_URL = ‘https://jsonplaceholder.typicode.com/posts’  
 	http.onreadystatechange = () => {  
 	if (http.readyState === 4 && http.status === 200){  
 			const data = JSON.parse(http.responseText)  
@@ -37,3 +37,4 @@
 	};  
 	http.open(‘GET’, API_URL, true);  
 	http.send();
+
