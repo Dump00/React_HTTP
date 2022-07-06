@@ -7,7 +7,6 @@ const App1 = () => {
   const [dummyData, setDummyData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-
   const fetchDummyDataHandler = async () => {
     setIsLoading(true)
       const respose = await fetch('https://jsonplaceholder.typicode.com/posts')

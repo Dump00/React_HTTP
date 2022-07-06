@@ -1,25 +1,34 @@
-import axios from 'axios';
 import { useState } from 'react';
 import DummyDataList from './components/DummyDataList';
 import LoadingSpinner from './components/LoadingSpinner';
 
-const App2 = () => {
+const App3 = () => {
 
   const [dummyData, setDummyData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const fetchDummyDataHandler = async () => {
-      setIsLoading(true)
-    const {data} = await axios('https://jsonplaceholder.typicode.com/posts')
-    const dataPack = data.map(d => {
-        return {
-            id: d.id,
-            title: d.title,
-            body: d.body
-          }
-    })
-    setDummyData(dataPack)
-    setIsLoading(false)
+  const fetchDummyDataHandler = () => {
+    setIsLoading(true)
+
+    const http = new XMLHttpRequest();
+    const API_URL = 'https://jsonplaceholder.typicode.com/posts'
+
+    http.onreadystatechange = ()=> {
+        if (http.readyState === 4 && http.status === 200){
+            const data = JSON.parse(http.responseText)
+            const dataPack = data.map(d => {
+                return {
+                    id: d.id,
+                    title: d.title,
+                    body: d.body
+                  }
+            })
+            setDummyData(dataPack)
+            setIsLoading(false)
+        }
+    };
+    http.open('GET', API_URL, true);
+    http.send();
   }
 
   const clearDataHandler = () => {
@@ -38,4 +47,4 @@ const App2 = () => {
   );
 }
 
-export default App2;
+export default App3;
