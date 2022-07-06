@@ -1,25 +1,26 @@
+import axios from 'axios';
 import { useState } from 'react';
 import DummyDataList from './components/DummyDataList';
 import LoadingSpinner from './components/LoadingSpinner';
 
-const App = () => {
+const App2 = () => {
 
   const [dummyData, setDummyData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
 
+
   const fetchDummyDataHandler = async () => {
-    setIsLoading(true)
-      const respose = await fetch('https://jsonplaceholder.typicode.com/posts')
-      const data = await respose.json()
-      const dataPack = data.map(d => {
+      setIsLoading(true)
+    const {data} = await axios('https://jsonplaceholder.typicode.com/posts')
+    const dataPack = data.map(d => {
         return {
-          id: d.id,
-          title: d.title,
-          body: d.body
-        }
-      })
-      setDummyData(dataPack)
+            id: d.id,
+            title: d.title,
+            body: d.body
+          }
+    })
+    setDummyData(dataPack)
     setIsLoading(false)
   }
 
@@ -39,4 +40,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App2;
