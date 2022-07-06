@@ -1,14 +1,24 @@
-# HTTP with React
+# HTTP with React 🙌
 
 **This project is a demonstration of testing the alternative ways of making an Ajax call with React Library**
 
-**Source**
+![image](https://miro.medium.com/max/500/1*ekA5dK7Eu27OEmv5OQOwQQ.jpeg)
+
+## Source
 
     
 
 > https://jsonplaceholder.typicode.com/posts
 
+ ## How to spin up the project**
+ - Clone Project
+ - Go to the project directory
+ - Install dependencies by running `npm install`
+ - Run project by running `npm start`
  
+
+## Summary
+
  1. App1 Component
 	 - 
 	Fetch data using JavaScript Fetch API
@@ -37,4 +47,3 @@
 	};  
 	http.open(‘GET’, API_URL, true);  
 	http.send();
-
