@@ -13,7 +13,7 @@ const App3 = () => {
     const http = new XMLHttpRequest();
     const API_URL = 'https://jsonplaceholder.typicode.com/posts'
 
-    http.onreadystatechange = ()=> {
+    http.onreadystatechange = () => {
         if (http.readyState === 4 && http.status === 200){
             const data = JSON.parse(http.responseText)
             const dataPack = data.map(d => {
