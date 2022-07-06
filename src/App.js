@@ -12,9 +12,6 @@ const App = () => {
     setIsLoading(true)
       const respose = await fetch('https://jsonplaceholder.typicode.com/posts')
       const data = await respose.json()
-      if(!respose.ok){
-        throw new Error('Something went wrong!')
-      }
       const dataPack = data.map(d => {
         return {
           id: d.id,
